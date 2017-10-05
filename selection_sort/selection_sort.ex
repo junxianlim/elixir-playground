@@ -6,7 +6,7 @@ defmodule SelectionSort do
     compute(sorted_list, original_list, tail, firstNum)
   end
 
-  def compute(sorted_list, original_list, [head | tail], biggestNumber) do
+  defp compute(sorted_list, original_list, [head | tail], biggestNumber) do
     if head > biggestNumber do
       newTail = [biggestNumber | tail]
       newBiggestNumber = head
@@ -16,8 +16,8 @@ defmodule SelectionSort do
     end
   end
 
-  def compute(sorted_list, original_list, [], biggestNumber) do
-    original_list = :lists.delete(biggestNumber, original_list)
+  defp compute(sorted_list, original_list, [], biggestNumber) do
+    original_list = List.delete(original_list, biggestNumber)
     sorted_list = [biggestNumber | sorted_list]
 
     if original_list != [] do
