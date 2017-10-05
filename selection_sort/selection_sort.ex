@@ -14,10 +14,10 @@ defmodule SelectionSort do
 
   defp compare(sorted, list, [num | tail], max) do
     { max, tail } = if num > max do
-                 { num, [max | tail] }
-               else
-                 { max, tail }
-               end
+                      { num, [max | tail] }
+                    else
+                      { max, tail }
+                    end
 
     compare(sorted, list, tail, max)
   end
