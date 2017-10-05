@@ -1,9 +1,9 @@
 defmodule Karatsuba do
-  def compute(x,y) when x < 10 or y < 10  do
+  def run(x,y) when x < 10 or y < 10  do
     x * y
   end
 
-  def compute(x,y) do
+  def run(x,y) do
     x_length = get_length(x)
     y_length = get_length(y)
 
@@ -12,10 +12,10 @@ defmodule Karatsuba do
     { a, b } = divmod(x, ten_pow(m))
     { c, d } = divmod(y, ten_pow(m))
 
-    ac = compute(a, c)
-    bd = compute(b, d)
+    ac = run(a, c)
+    bd = run(b, d)
 
-    ad_plus_bc = compute(a + b, c + d) - ac - bd
+    ad_plus_bc = run(a + b, c + d) - ac - bd
 
     ac * ten_pow(m * 2) + (ad_plus_bc * ten_pow(m)) + bd
   end
@@ -39,10 +39,10 @@ defmodule KaratsubaTest do
   use ExUnit.Case
 
   test "multiplies correctly using the karatsuba algorithm" do
-    assert Karatsuba.compute(4, 3)              == 4 * 3
-    assert Karatsuba.compute(10, 20)            == 10 * 20
-    assert Karatsuba.compute(1234, 6789)        == 1234 * 6789
-    assert Karatsuba.compute(5555555, 12345)    == 5555555 * 12345
-    assert Karatsuba.compute(75081230, 1203123) == 75081230 * 1203123
+    assert Karatsuba.run(4, 3)              == 4 * 3
+    assert Karatsuba.run(10, 20)            == 10 * 20
+    assert Karatsuba.run(1234, 6789)        == 1234 * 6789
+    assert Karatsuba.run(5555555, 12345)    == 5555555 * 12345
+    assert Karatsuba.run(75081230, 1203123) == 75081230 * 1203123
   end
 end
