@@ -8,19 +8,19 @@ defmodule Karatsuba do
     else
       m = Enum.max([x_length, y_length]) / 2 |> round
 
-      { a, b } = divmod(x, get_pow(10, m))
-      { c, d } = divmod(y, get_pow(10, m))
+      { a, b } = divmod(x, ten_pow(m))
+      { c, d } = divmod(y, ten_pow(m))
 
       ac = compute(a, c)
       bd = compute(b, d)
 
       ad_plus_bc = compute(a + b, c + d) - ac - bd
 
-      ac * get_pow(10, m * 2) + (ad_plus_bc * get_pow(10, m)) + bd
+      ac * ten_pow(m * 2) + (ad_plus_bc * ten_pow(m)) + bd
     end
   end
 
-  defp get_pow(num, pow), do: :math.pow(num, pow) |> round
+  defp ten_pow(pow), do: :math.pow(10, pow) |> round
   
   defp get_length(num), do: num |> Integer.digits |> Enum.count
 
