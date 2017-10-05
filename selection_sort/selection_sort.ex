@@ -1,35 +1,33 @@
 # No Enum.max()
 
 defmodule SelectionSort do
-  def compute(original_list) do
-    [firstNum | tail] = original_list
-    sorted_list = []
-
-    compute(sorted_list, original_list, tail, firstNum)
+  def run(original_list) when is_list(original_list) do
+    run([], original_list)
   end
 
-  defp compute(sorted_list, original_list, [head | tail], biggestNumber) do
+  defp run(sorted_list, []), do: sorted_list
+
+  defp run(sorted_list, original_list) do
+    [ num | tail ] = original_list
+    compare(sorted_list, original_list, tail, num)
+  end
+
+  defp compare(sorted_list, original_list, [head | tail], biggestNumber) do
     { biggestNumber, tail } = if head > biggestNumber do
-      newBiggestNumber = head
-      newTail = [biggestNumber | tail]
-      { newBiggestNumber, newTail }
-    else
-      { biggestNumber, tail }
-    end
-    
-    compute(sorted_list, original_list, tail, biggestNumber)
+                                newBiggestNumber = head
+                                newTail = [biggestNumber | tail]
+                                { newBiggestNumber, newTail }
+                              else
+                                { biggestNumber, tail }
+                              end
+
+    compare(sorted_list, original_list, tail, biggestNumber)
   end
 
-  defp compute(sorted_list, original_list, [], biggestNumber) do
+  defp compare(sorted_list, original_list, [], biggestNumber) do
     original_list = List.delete(original_list, biggestNumber)
     sorted_list = [biggestNumber | sorted_list]
-
-    if original_list != [] do
-      [num | tail] = original_list
-      compute(sorted_list, original_list, tail, num)
-    else 
-      sorted_list
-    end
+    run(sorted_list, original_list)
   end
 end
 
@@ -40,7 +38,7 @@ defmodule SelectionSortTest do
   use ExUnit.Case
 
   test "does selection sort correctly" do
-    assert SelectionSort.compute([2,3,1])              == [1,2,3]
-    assert SelectionSort.compute([4,3,4,2,1])          == [1,2,3,4,4]
+    assert SelectionSort.run([2,3,1])              == [1,2,3]
+    assert SelectionSort.run([4,3,4,2,1])          == [1,2,3,4,4]
   end
 end
