@@ -2,29 +2,28 @@
 
 defmodule SelectionSort do
   def run(list) when is_list(list) do
-    run([], list)
+    run(list, [])
   end
 
-  defp run(sorted, []), do: sorted
+  defp run([], sorted), do: sorted
 
-  defp run(sorted, list) do
+  defp run(list, sorted) do
     [ num | tail ] = list
-    compare(sorted, list, tail, num)
+    compare(list, sorted, tail, num)
   end
 
-  defp compare(sorted, list, [num | tail], max) do
+  defp compare(list, sorted, [num | tail], max) do
     { max, tail } = if num > max do
                       { num, [max | tail] }
                     else
                       { max, tail }
                     end
 
-    compare(sorted, list, tail, max)
+    compare(list, sorted, tail, max)
   end
 
-  defp compare(sorted, list, [], max) do
-    list = List.delete(list, max)
-    run([max | sorted], list)
+  defp compare(list, sorted, [], max) do 
+    List.delete(list, max) |> run([max | sorted])
   end
 end
 
