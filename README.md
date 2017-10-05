@@ -16,3 +16,4 @@
 ```
 
 - This is my playground for elixir code.
+- I use this to learn and improve my programming skills.
