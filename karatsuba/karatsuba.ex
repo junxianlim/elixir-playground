@@ -39,10 +39,10 @@ defmodule KaratsubaTest do
   use ExUnit.Case
 
   test "karatsuba" do
-    assert Karatsuba.compute(4, 3) == 4 * 3
-    assert Karatsuba.compute(10, 20) == 10 * 20
-    assert Karatsuba.compute(1234, 6789) == 1234 * 6789
-    assert Karatsuba.compute(5555555, 12345) == 5555555 * 12345
+    assert Karatsuba.compute(4, 3)              == 4 * 3
+    assert Karatsuba.compute(10, 20)            == 10 * 20
+    assert Karatsuba.compute(1234, 6789)        == 1234 * 6789
+    assert Karatsuba.compute(5555555, 12345)    == 5555555 * 12345
     assert Karatsuba.compute(75081230, 1203123) == 75081230 * 1203123
   end
 end
