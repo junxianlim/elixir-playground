@@ -38,7 +38,7 @@ ExUnit.start()
 defmodule KaratsubaTest do
   use ExUnit.Case
 
-  test "karatsuba" do
+  test "multiplies correctly using the karatsuba algorithm" do
     assert Karatsuba.compute(4, 3)              == 4 * 3
     assert Karatsuba.compute(10, 20)            == 10 * 20
     assert Karatsuba.compute(1234, 6789)        == 1234 * 6789
