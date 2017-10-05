@@ -1,3 +1,5 @@
+# No Enum.max()
+
 defmodule SelectionSort do
   def compute(original_list) do
     [firstNum | tail] = original_list
@@ -7,13 +9,15 @@ defmodule SelectionSort do
   end
 
   defp compute(sorted_list, original_list, [head | tail], biggestNumber) do
-    if head > biggestNumber do
-      newTail = [biggestNumber | tail]
+    { biggestNumber, tail } = if head > biggestNumber do
       newBiggestNumber = head
-      compute(sorted_list, original_list, newTail, newBiggestNumber)
+      newTail = [biggestNumber | tail]
+      { newBiggestNumber, newTail }
     else
-      compute(sorted_list, original_list, tail, biggestNumber)
+      { biggestNumber, tail }
     end
+    
+    compute(sorted_list, original_list, tail, biggestNumber)
   end
 
   defp compute(sorted_list, original_list, [], biggestNumber) do
@@ -30,7 +34,6 @@ defmodule SelectionSort do
 end
 
 # Test cases
-
 ExUnit.start()
 
 defmodule SelectionSortTest do
