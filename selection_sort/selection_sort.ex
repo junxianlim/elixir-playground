@@ -1,33 +1,30 @@
 # No Enum.max()
 
 defmodule SelectionSort do
-  def run(original_list) when is_list(original_list) do
-    run([], original_list)
+  def run(list) when is_list(list) do
+    run([], list)
   end
 
-  defp run(sorted_list, []), do: sorted_list
+  defp run(sorted, []), do: sorted
 
-  defp run(sorted_list, original_list) do
-    [ num | tail ] = original_list
-    compare(sorted_list, original_list, tail, num)
+  defp run(sorted, list) do
+    [ num | tail ] = list
+    compare(sorted, list, tail, num)
   end
 
-  defp compare(sorted_list, original_list, [head | tail], biggestNumber) do
-    { biggestNumber, tail } = if head > biggestNumber do
-                                newBiggestNumber = head
-                                newTail = [biggestNumber | tail]
-                                { newBiggestNumber, newTail }
-                              else
-                                { biggestNumber, tail }
-                              end
+  defp compare(sorted, list, [num | tail], max) do
+    { max, tail } = if num > max do
+                 { num, [max | tail] }
+               else
+                 { max, tail }
+               end
 
-    compare(sorted_list, original_list, tail, biggestNumber)
+    compare(sorted, list, tail, max)
   end
 
-  defp compare(sorted_list, original_list, [], biggestNumber) do
-    original_list = List.delete(original_list, biggestNumber)
-    sorted_list = [biggestNumber | sorted_list]
-    run(sorted_list, original_list)
+  defp compare(sorted, list, [], max) do
+    list = List.delete(list, max)
+    run([max | sorted], list)
   end
 end
 
