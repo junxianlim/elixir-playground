@@ -22,6 +22,7 @@ defmodule BubbleSortTest do
   use ExUnit.Case
 
   test "does selection sort correctly" do
+    assert BubbleSort.run([2])                 == [2]
     assert BubbleSort.run([2,3,1])             == [1,2,3]
     assert BubbleSort.run([4,3,4,2,1])         == [1,2,3,4,4]
     assert BubbleSort.run([8,10,11,1,6,1,5,2]) == [1,1,2,5,6,8,10,11]
