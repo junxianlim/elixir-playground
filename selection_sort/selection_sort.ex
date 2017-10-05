@@ -38,7 +38,8 @@ defmodule SelectionSortTest do
   use ExUnit.Case
 
   test "does selection sort correctly" do
-    assert SelectionSort.run([2,3,1])              == [1,2,3]
-    assert SelectionSort.run([4,3,4,2,1])          == [1,2,3,4,4]
+    assert SelectionSort.run([2,3,1])             == [1,2,3]
+    assert SelectionSort.run([4,3,4,2,1])         == [1,2,3,4,4]
+    assert SelectionSort.run([8,10,11,1,6,1,5,2]) == [1,1,2,5,6,8,10,11]
   end
 end
