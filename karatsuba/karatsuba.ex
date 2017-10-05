@@ -1,23 +1,23 @@
 defmodule Karatsuba do
+  def compute(x,y) when x < 10 or y < 10  do
+    x * y
+  end
+
   def compute(x,y) do
     x_length = get_length(x)
     y_length = get_length(y)
 
-    if x < 10 || y < 10 do 
-      x * y
-    else
-      m = Enum.max([x_length, y_length]) / 2 |> round
+    m = Enum.max([x_length, y_length]) / 2 |> round
 
-      { a, b } = divmod(x, ten_pow(m))
-      { c, d } = divmod(y, ten_pow(m))
+    { a, b } = divmod(x, ten_pow(m))
+    { c, d } = divmod(y, ten_pow(m))
 
-      ac = compute(a, c)
-      bd = compute(b, d)
+    ac = compute(a, c)
+    bd = compute(b, d)
 
-      ad_plus_bc = compute(a + b, c + d) - ac - bd
+    ad_plus_bc = compute(a + b, c + d) - ac - bd
 
-      ac * ten_pow(m * 2) + (ad_plus_bc * ten_pow(m)) + bd
-    end
+    ac * ten_pow(m * 2) + (ad_plus_bc * ten_pow(m)) + bd
   end
 
   defp ten_pow(pow), do: :math.pow(10, pow) |> round
