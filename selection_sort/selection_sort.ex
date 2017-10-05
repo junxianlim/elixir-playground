@@ -7,7 +7,7 @@ defmodule SelectionSort do
 
   defp run([], sorted), do: sorted
 
-  defp run([num | tail ] = list, sorted) do
+  defp run([num | tail] = list, sorted) do
     compare(list, sorted, tail, num)
   end
 
