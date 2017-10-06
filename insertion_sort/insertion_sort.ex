@@ -1,11 +1,11 @@
 defmodule InsertionSort do
   def run(list) when is_list(list), do: run(list, [])
   def run([], sorted), do: sorted
-  def run([h | t], sorted), do: run(t, insert(h, sorted))
+  def run([h | tail], sorted), do: run(tail, insert(h, sorted))
 
   defp insert(x, []), do: [x]
   defp insert(x, sorted) when x < hd(sorted), do: [x | sorted]
-  defp insert(x, [h | t]), do: [h | insert(x, t)]
+  defp insert(x, [h | tail]), do: [h | insert(x, tail)]
 end
 
 # Test cases
