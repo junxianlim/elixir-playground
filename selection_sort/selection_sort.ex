@@ -2,15 +2,10 @@
 
 defmodule SelectionSort do
   def run(list) when length(list)<2, do: list
-  def run(list) when is_list(list) do
-    run(list, [])
-  end
+  def run(list) when is_list(list), do: run(list, [])
 
   defp run([], sorted), do: sorted
-
-  defp run([num | tail] = list, sorted) do
-    compare(list, sorted, tail, num)
-  end
+  defp run([num | tail] = list, sorted), do: compare(list, sorted, tail, num)
 
   defp compare(list, sorted, [num | tail], max) do
     { max, tail } = if num > max do
@@ -18,13 +13,10 @@ defmodule SelectionSort do
                     else
                       { max, tail }
                     end
-
     compare(list, sorted, tail, max)
   end
 
-  defp compare(list, sorted, [], max) do 
-    List.delete(list, max) |> run([max | sorted])
-  end
+  defp compare(list, sorted, [], max), do: List.delete(list, max) |> run([max | sorted])
 end
 
 # Test cases

@@ -1,16 +1,17 @@
 defmodule BubbleSort do
   def run(list) when length(list)<2, do: list
-  def run(list) when is_list(list), do: run(list, list)
+  def run(list) when is_list(list), do: run(list, list) 
+  
   defp run(ref, sorted) do
-    sorted = compare(sorted)
-    if sorted == ref do
-      sorted
-    else
-      run(sorted, sorted)
+    case compare(sorted) do
+      ^ref ->
+        sorted
+      sorted ->
+        run(sorted, sorted)
     end
   end
 
-  defp compare([x]), do: [x]
+  defp compare([x]), do: [x]  
   defp compare([x,y | t]) when x > y, do: [y | compare([x | t])]
   defp compare([x,y | t]), do: [x | compare([y | t])]
 end
@@ -29,3 +30,9 @@ defmodule BubbleSortTest do
     assert BubbleSort.run([3,2,1,4,5,2])       == [1, 2, 2, 3, 4, 5]
   end
 end
+
+defmodule Moon do
+  def add(x,y) do
+    x+y
+  end
+end 
