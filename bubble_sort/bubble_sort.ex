@@ -30,9 +30,3 @@ defmodule BubbleSortTest do
     assert BubbleSort.run([3,2,1,4,5,2])       == [1, 2, 2, 3, 4, 5]
   end
 end
-
-defmodule Moon do
-  def add(x,y) do
-    x+y
-  end
-end 
