@@ -1,3 +1,5 @@
+# Did not use erlangs :lists.merge
+
 defmodule MergeSort do
   def run([]), do: []
   def run([x]), do: [x] 
