@@ -12,8 +12,8 @@ defmodule MergeSort do
   def merge([], t, acc), do: acc ++ t
   def merge([lh | lt] = l, [rh | rt] = r, acc) do
     cond do
-      lh > rh -> merge(l, rt, acc ++ [rh])
-      true    -> merge(lt, r, acc ++ [lh])
+      lh > rh  -> merge(l, rt, acc ++ [rh])
+      rh >= lh -> merge(lt, r, acc ++ [lh])
     end
   end
 end
