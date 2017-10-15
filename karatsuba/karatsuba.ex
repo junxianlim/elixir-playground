@@ -25,7 +25,7 @@ defmodule Karatsuba do
     { div(num - r, m), r }
   end
 
-  def get_length(num), do: num |> round |> Integer.digits |> Enum.count
+  def get_length(num), do: num |> Integer.digits |> Enum.count
   def pow(n, e), do: pow(n, e, 1)
   def pow(_, 0, acc), do: acc
   def pow(n, e, acc), do: pow(n, e - 1, n * acc)
