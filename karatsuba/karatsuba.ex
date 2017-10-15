@@ -4,10 +4,7 @@ defmodule Karatsuba do
   end
 
   def run(x,y) do
-    x_length = get_length(x)
-    y_length = get_length(y)
-
-    m = Enum.max([x_length, y_length]) |> div(2)
+    m = Enum.max([get_length(x), get_length(y)]) |> div(2)
 
     { a, b } = divmod(x, pow(10, m))
     { c, d } = divmod(y, pow(10, m))
@@ -20,15 +17,15 @@ defmodule Karatsuba do
     ac * pow(10, m * 2) + (ad_plus_bc * pow(10, m)) + bd
   end
 
-  def divmod(num, m) do
+  defp divmod(num, m) do
     r = rem(num, m)
     { div(num - r, m), r }
   end
 
-  def get_length(num), do: num |> Integer.digits |> Enum.count
-  def pow(n, e), do: pow(n, e, 1)
-  def pow(_, 0, acc), do: acc
-  def pow(n, e, acc), do: pow(n, e - 1, n * acc)
+  defp get_length(num), do: num |> Integer.digits |> Enum.count
+  defp pow(n, e), do: pow(n, e, 1)
+  defp pow(_, 0, acc), do: acc
+  defp pow(n, e, acc), do: pow(n, e - 1, n * acc)
 end
 
 # Test cases
