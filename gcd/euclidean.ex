@@ -9,7 +9,7 @@ ExUnit.start()
 defmodule EuclideanTest do
   use ExUnit.Case
 
-  test "does Fibonnaci correctly" do
+  test "does Euclidean (GCD) correctly" do
     assert Euclidean.run(0,1)             == 1
     assert Euclidean.run(100,0)           == 100
     assert Euclidean.run(10,3)            == 1
