@@ -1,5 +1,4 @@
 defmodule Euclidean do
-  def run(0, y), do: y
   def run(x, 0), do: x
   def run(x, y), do: run(y, rem(x,y))
 end
