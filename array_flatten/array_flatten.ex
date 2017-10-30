@@ -1,5 +1,6 @@
 defmodule ArrayFlatten do
-  def run(a), do: flatten(a, [])
+  def run(a) when is_list(a), do: flatten(a, [])
+  def run(_), do: "This is not a list"
   defp flatten([h|t], acc) when is_list(h), do: flatten(t, flatten(h, acc))
   defp flatten([h|t], acc), do: flatten(t, acc ++ [h])
   defp flatten([], acc), do: acc
@@ -12,6 +13,7 @@ defmodule ArrayFlattenTest do
   use ExUnit.Case
 
   test "flattens array correctly" do
+    assert ArrayFlatten.run("not a list")                      == "This is not a list"
     assert ArrayFlatten.run([])                                == []
     assert ArrayFlatten.run([1,2,4,3])                         == [1,2,4,3]
     assert ArrayFlatten.run([1, [3, 2], 4])                    == [1,3,2,4]
